@@ -1,6 +1,25 @@
 version: '3.7'
 
 services:
+  server:
+    build: 
+      context: .
+      dockerfile: ./docker/Dockerfile
+    container_name: prisma-graphql
+    environment:
+      - NODE_ENV=development
+      - COMMAND=${COMMAND:-start:dev}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_HOST=${POSTGRES_HOST}
+    volumes:
+      - ./app:/app
+    ports:
+      - "5000:5000"
+    depends_on:
+      - postgres
+
   postgres:
     image: postgres:latest
     restart: always
