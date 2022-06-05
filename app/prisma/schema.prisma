@@ -26,12 +26,12 @@ model Student {
 model ClassesStudnets {
   studentId Int
   stduent Student @relation(fields: [studentId], references: [id])
-  calssId Int
-  class Class @relation(fields: [calssId], references: [id])
-  score Int
+  classId Int
+  class Class @relation(fields: [classId], references: [id])
+  score Int?
   semester String @db.VarChar()
 
-  @@id([studentId, calssId])
+  @@id([studentId, classId])
 }
 
 model Class {
@@ -39,7 +39,7 @@ model Class {
   time DateTime
   days Days
   subjectId Int
-  subJect Subject @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  subject Subject @relation(fields: [subjectId], references: [id], onDelete: Cascade)
   students ClassesStudnets[]
 }
 

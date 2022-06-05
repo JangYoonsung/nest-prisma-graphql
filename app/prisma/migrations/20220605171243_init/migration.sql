@@ -20,11 +20,11 @@ CREATE TABLE "Student" (
 -- CreateTable
 CREATE TABLE "ClassesStudnets" (
     "studentId" INTEGER NOT NULL,
-    "calssId" INTEGER NOT NULL,
-    "score" INTEGER NOT NULL,
+    "classId" INTEGER NOT NULL,
+    "score" INTEGER,
     "semester" VARCHAR NOT NULL,
 
-    CONSTRAINT "ClassesStudnets_pkey" PRIMARY KEY ("studentId","calssId")
+    CONSTRAINT "ClassesStudnets_pkey" PRIMARY KEY ("studentId","classId")
 );
 
 -- CreateTable
@@ -67,7 +67,7 @@ ALTER TABLE "Student" ADD CONSTRAINT "Student_majorId_fkey" FOREIGN KEY ("majorI
 ALTER TABLE "ClassesStudnets" ADD CONSTRAINT "ClassesStudnets_studentId_fkey" FOREIGN KEY ("studentId") REFERENCES "Student"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "ClassesStudnets" ADD CONSTRAINT "ClassesStudnets_calssId_fkey" FOREIGN KEY ("calssId") REFERENCES "Class"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "ClassesStudnets" ADD CONSTRAINT "ClassesStudnets_classId_fkey" FOREIGN KEY ("classId") REFERENCES "Class"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Class" ADD CONSTRAINT "Class_subjectId_fkey" FOREIGN KEY ("subjectId") REFERENCES "Subject"("id") ON DELETE CASCADE ON UPDATE CASCADE;
