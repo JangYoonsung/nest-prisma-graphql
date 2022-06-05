@@ -10,3 +10,69 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+
+model Student {
+  id Int @default(autoincrement()) @id
+  studentNumber Int @map("student_number")
+  grade Int
+  name String @db.VarChar()
+  entrance DateTime
+  graduation DateTime?
+  majorId Int
+  major Major @relation(fields: [majorId], references: [id])
+  classes ClassesStudnets[]
+}
+
+model ClassesStudnets {
+  studentId Int
+  stduent Student @relation(fields: [studentId], references: [id])
+  calssId Int
+  class Class @relation(fields: [calssId], references: [id])
+  score Int
+  semester String @db.VarChar()
+
+  @@id([studentId, calssId])
+}
+
+model Class {
+  id Int @default(autoincrement()) @id
+  time DateTime
+  days Days
+  subjectId Int
+  subJect Subject @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  students ClassesStudnets[]
+}
+
+model Major {
+  id Int @default(autoincrement()) @id
+  name String @db.VarChar()
+  students Student[]
+  subjects Subject[]
+}
+
+model Subject {
+  id Int @default(autoincrement()) @id
+  credit Int
+  code String @db.VarChar()
+  name String @db.VarChar()
+  type SubjectType
+  majorId Int @unique
+  major Major @relation(fields: [majorId], references: [id], onDelete: Cascade)
+  classes Class[]
+}
+
+enum SubjectType {
+  MUST
+  OPTIONAL
+  ELECTIVE
+}
+
+enum Days {
+  MONDAY
+  TUESDAY
+  WEDNESDAY
+  THURSDAY
+  FRIDAY
+  SATURDAY
+  SUNDAY
+}
