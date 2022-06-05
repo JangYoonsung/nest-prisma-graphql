@@ -4,7 +4,7 @@ import { customLogger } from "./logger";
 const prisma = new PrismaClient()
 
 const dropData = async () => {
-  await prisma.classesStudnets.deleteMany()
+  await prisma.classesStudents.deleteMany()
   await prisma.class.deleteMany()
   await prisma.subject.deleteMany()
   await prisma.student.deleteMany()
@@ -82,7 +82,7 @@ const classes = async () => {
 
 const studentClass = async () => {
   try {
-    await prisma.classesStudnets.create({
+    await prisma.classesStudents.create({
       data: {
         studentId: (await prisma.student.findFirst()).id,
         classId: (await prisma.class.findFirst()).id,

@@ -20,10 +20,10 @@ model Student {
   graduation DateTime?
   majorId Int
   major Major @relation(fields: [majorId], references: [id])
-  classes ClassesStudnets[]
+  classes ClassesStudents[]
 }
 
-model ClassesStudnets {
+model ClassesStudents {
   studentId Int
   stduent Student @relation(fields: [studentId], references: [id])
   classId Int
@@ -40,7 +40,7 @@ model Class {
   days Days
   subjectId Int
   subject Subject @relation(fields: [subjectId], references: [id], onDelete: Cascade)
-  students ClassesStudnets[]
+  students ClassesStudents[]
 }
 
 model Major {

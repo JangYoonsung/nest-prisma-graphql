@@ -18,13 +18,13 @@ CREATE TABLE "Student" (
 );
 
 -- CreateTable
-CREATE TABLE "ClassesStudnets" (
+CREATE TABLE "ClassesStudents" (
     "studentId" INTEGER NOT NULL,
     "classId" INTEGER NOT NULL,
     "score" INTEGER,
     "semester" VARCHAR NOT NULL,
 
-    CONSTRAINT "ClassesStudnets_pkey" PRIMARY KEY ("studentId","classId")
+    CONSTRAINT "ClassesStudents_pkey" PRIMARY KEY ("studentId","classId")
 );
 
 -- CreateTable
@@ -64,10 +64,10 @@ CREATE UNIQUE INDEX "Subject_majorId_key" ON "Subject"("majorId");
 ALTER TABLE "Student" ADD CONSTRAINT "Student_majorId_fkey" FOREIGN KEY ("majorId") REFERENCES "Major"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "ClassesStudnets" ADD CONSTRAINT "ClassesStudnets_studentId_fkey" FOREIGN KEY ("studentId") REFERENCES "Student"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "ClassesStudents" ADD CONSTRAINT "ClassesStudents_studentId_fkey" FOREIGN KEY ("studentId") REFERENCES "Student"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "ClassesStudnets" ADD CONSTRAINT "ClassesStudnets_classId_fkey" FOREIGN KEY ("classId") REFERENCES "Class"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "ClassesStudents" ADD CONSTRAINT "ClassesStudents_classId_fkey" FOREIGN KEY ("classId") REFERENCES "Class"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Class" ADD CONSTRAINT "Class_subjectId_fkey" FOREIGN KEY ("subjectId") REFERENCES "Subject"("id") ON DELETE CASCADE ON UPDATE CASCADE;
