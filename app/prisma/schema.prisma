@@ -56,7 +56,7 @@ model Subject {
   code String @db.VarChar()
   name String @db.VarChar()
   type SubjectType
-  majorId Int @unique
+  majorId Int
   major Major @relation(fields: [majorId], references: [id], onDelete: Cascade)
   classes Class[]
 }
