@@ -56,11 +56,6 @@ export const createSubjects = async (
       subjects.push(elective)
     })
 
-  await Promise.all(
-    subjects.map(async (value) => {
-      await prisma.subject.create({ data: value })
-    })
-  )
-
+  await prisma.subject.createMany({ data: subjects })
   return prisma.subject.findMany()
 }
