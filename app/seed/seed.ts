@@ -1,6 +1,7 @@
-import { PrismaClient } from "@prisma/client";
-import { customLogger } from "./logger";
-import { createMajor } from "./major";
+import { PrismaClient } from '@prisma/client'
+import { customLogger } from './logger'
+import { createMajor } from './major'
+import { createSubjects } from './subject'
 
 const prisma = new PrismaClient()
 
@@ -15,9 +16,8 @@ const dropData = async () => {
 
 const major = async () => {
   try {
-    const major = await createMajor(prisma)
+    await createMajor(prisma)
     customLogger.info('create major success')
-
   } catch (err) {
     customLogger.info(`Major Error: ${err}`)
     process.exit(1)
@@ -26,15 +26,7 @@ const major = async () => {
 
 const subject = async () => {
   try {
-    await prisma.subject.create({
-      data: {
-        name: 'test',
-        credit: 3,
-        code: 'test_1',
-        type: 'MUST',
-        majorId: (await prisma.major.findFirst()).id
-      }
-    })
+    await createSubjects(prisma, await prisma.major.findMany())
     customLogger.info('create subject success')
   } catch (err) {
     customLogger.info(`Subject Error: ${err}`)
@@ -110,11 +102,11 @@ const main = async () => {
   await classes()
 
   customLogger.info('----create studentClass----')
-  await studentClass()  
-  
+  await studentClass()
+
   customLogger.info('end seeder')
 }
 
-(async () => {
+;(async () => {
   main()
 })()

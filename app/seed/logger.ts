@@ -5,13 +5,20 @@ const levels = {
   warn: 1,
   info: 2,
   http: 3,
-  debug: 4,
+  debug: 4
 }
 
 const formatConfigs = {
-  date: winston.format.timestamp({ format: new Date().toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo', hour12: false }) }),
+  date: winston.format.timestamp({
+    format: new Date().toLocaleString('ja-JP', {
+      timeZone: 'Asia/Tokyo',
+      hour12: false
+    })
+  }),
   colorize: winston.format.colorize({ all: true }),
-  print: winston.format.printf((info) => `${info.timestamp} ${info.level}: ${info.message}`)
+  print: winston.format.printf(
+    (info) => `${info.timestamp} ${info.level}: ${info.message}`
+  )
 }
 
 const format: winston.Logform.Format = winston.format.combine(
@@ -32,7 +39,7 @@ const colors = {
   warn: 'yellow',
   info: 'green',
   http: 'magenta',
-  debug: 'white',
+  debug: 'white'
 }
 
 winston.addColors(colors)
