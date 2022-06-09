@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client'
+import { createClass } from './classes'
 import { customLogger } from './logger'
 import { createMajor } from './major'
 import { createStudents } from './student'
@@ -47,13 +48,7 @@ const student = async () => {
 
 const classes = async () => {
   try {
-    await prisma.class.create({
-      data: {
-        time: new Date(2022, 1, 1, 10, 0, 0),
-        days: 'MONDAY',
-        subjectId: (await prisma.subject.findFirst()).id
-      }
-    })
+    await createClass(prisma, await prisma.subject.findMany())
     customLogger.info('create class success')
   } catch (err) {
     customLogger.info(`Class Error: ${err}`)
