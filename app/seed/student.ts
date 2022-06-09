@@ -1,5 +1,5 @@
 import { Major, PrismaClient, Student } from '@prisma/client'
-import { randomMajor } from './util'
+import { randomModel } from './util'
 
 export const createStudents = async (
   prisma: PrismaClient,
@@ -12,7 +12,7 @@ export const createStudents = async (
       grade: Math.floor(Math.random() * 4 + 1),
       studentNumber: Math.floor(Math.random() * 10 * 10),
       entrance: new Date(2022, 4),
-      majorId: randomMajor(majors).id
+      majorId: randomModel(majors).id
     }))
 
   await prisma.student.createMany({ data: students })

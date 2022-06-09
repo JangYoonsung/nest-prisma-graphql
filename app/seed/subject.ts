@@ -1,5 +1,5 @@
 import { Major, PrismaClient, Subject, SubjectType } from '@prisma/client'
-import { randomMajor } from './util'
+import { randomModel } from './util'
 
 type TSubject = {
   credit: number
@@ -23,7 +23,7 @@ export const createSubjects = async (
         code: `must_subject_${index}`,
         name: `must_subject_${index}`,
         type: 'MUST',
-        majorId: randomMajor(majors).id
+        majorId: randomModel(majors).id
       }
       subjects.push(must)
     })
@@ -37,7 +37,7 @@ export const createSubjects = async (
         code: `optional_subject_${index}`,
         name: `optional_subject_${index}`,
         type: 'OPTIONAL',
-        majorId: randomMajor(majors).id
+        majorId: randomModel(majors).id
       }
       subjects.push(optional)
     })
@@ -51,7 +51,7 @@ export const createSubjects = async (
         code: `elective_subject_${index}`,
         name: `elective_subject_${index}`,
         type: 'ELECTIVE',
-        majorId: randomMajor(majors).id
+        majorId: randomModel(majors).id
       }
       subjects.push(elective)
     })

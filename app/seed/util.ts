@@ -1,11 +1,9 @@
-import { Major } from '@prisma/client'
-
 /**
- * 무작위로 전공과목을 찾는다
- * @returns major
+ * 랜덤한 값을 찾는다
+ * @returns random target
  */
-export const randomMajor = (majors: Major[]) => {
-  const pick = Math.floor(Math.random() * majors.length)
+export const randomModel = <T>(target: T[]) => {
+  const pick = Math.floor(Math.random() * target.length)
 
-  return majors[pick]
+  return target[pick]
 }
