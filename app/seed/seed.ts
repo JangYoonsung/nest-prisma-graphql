@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { customLogger } from "./logger";
+import { createMajor } from "./major";
 
 const prisma = new PrismaClient()
 
@@ -14,14 +15,9 @@ const dropData = async () => {
 
 const major = async () => {
   try {
-    await prisma.major.create({
-      data: {
-        name: 'test'
-      }
-    })
+    const major = await createMajor(prisma)
     customLogger.info('create major success')
 
-    return prisma.major.findFirst()
   } catch (err) {
     customLogger.info(`Major Error: ${err}`)
     process.exit(1)
