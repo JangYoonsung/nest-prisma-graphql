@@ -4,11 +4,7 @@ export const createMajor = async (prisma: PrismaClient): Promise<Major[]> => {
   const major = Array(10)
     .fill('')
     .map((_, index) => ({ name: `major_${index}` }))
-  await Promise.all(
-    major.map(async (value) => {
-      await prisma.major.create({ data: value })
-    })
-  )
 
+  await prisma.major.createMany({ data: major })
   return prisma.major.findMany()
 }
