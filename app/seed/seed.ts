@@ -1,6 +1,7 @@
 import { PrismaClient } from '@prisma/client'
 import { customLogger } from './logger'
 import { createMajor } from './major'
+import { createStudents } from './student'
 import { createSubjects } from './subject'
 
 const prisma = new PrismaClient()
@@ -36,15 +37,7 @@ const subject = async () => {
 
 const student = async () => {
   try {
-    await prisma.student.create({
-      data: {
-        name: 'test',
-        studentNumber: 1,
-        grade: 1,
-        entrance: new Date(2022, 4, 1),
-        majorId: (await prisma.major.findFirst()).id
-      }
-    })
+    await createStudents(prisma, await prisma.major.findMany())
     customLogger.info('create student success')
   } catch (err) {
     customLogger.info(`Student Error: ${err}`)
