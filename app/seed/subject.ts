@@ -1,4 +1,5 @@
 import { Major, PrismaClient, Subject, SubjectType } from '@prisma/client'
+import { randomMajor } from './util'
 
 type TSubject = {
   credit: number
@@ -12,10 +13,6 @@ export const createSubjects = async (
   majors: Major[]
 ): Promise<Subject[]> => {
   const subjects: TSubject[] = []
-  const randomMajor = () => {
-    const pick = Math.floor(Math.random() * majors.length)
-    return majors[pick]
-  }
 
   // must
   Array(5)
@@ -26,7 +23,7 @@ export const createSubjects = async (
         code: `must_subject_${index}`,
         name: `must_subject_${index}`,
         type: 'MUST',
-        majorId: randomMajor().id
+        majorId: randomMajor(majors).id
       }
       subjects.push(must)
     })
@@ -40,7 +37,7 @@ export const createSubjects = async (
         code: `optional_subject_${index}`,
         name: `optional_subject_${index}`,
         type: 'OPTIONAL',
-        majorId: randomMajor().id
+        majorId: randomMajor(majors).id
       }
       subjects.push(optional)
     })
@@ -54,7 +51,7 @@ export const createSubjects = async (
         code: `elective_subject_${index}`,
         name: `elective_subject_${index}`,
         type: 'ELECTIVE',
-        majorId: randomMajor().id
+        majorId: randomMajor(majors).id
       }
       subjects.push(elective)
     })
