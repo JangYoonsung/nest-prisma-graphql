@@ -8,13 +8,14 @@ type Major {
 }
 
 type Query {
-  getMajors: [Major!]!
+  getMajors(currentPage: Int): [Major!]!
   getMajor(id: Int!): Major!
 }
 
 type Mutation {
   createMajor(dto: CreateMajorDto!): Major!
   updateMajor(id: Int!, dto: UpdateMajorDto!): Major!
+  deleteMajor(id: Int!): Major!
 }
 
 input CreateMajorDto {
