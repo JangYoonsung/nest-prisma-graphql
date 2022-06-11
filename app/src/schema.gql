@@ -9,4 +9,5 @@ type Major {
 
 type Query {
   getMajors: [Major!]!
+  getMajor(id: Int!): Major!
 }
