@@ -3,6 +3,7 @@ import { Module } from '@nestjs/common'
 import { GraphQLModule } from '@nestjs/graphql'
 import path from 'path'
 import { PrismaModule } from './config/prisma.module'
+import { MajorModule } from './major/major.module'
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { PrismaModule } from './config/prisma.module'
       debug: true,
       autoSchemaFile: path?.join(process.cwd(), 'src/schema.gql')
     }),
+    MajorModule,
     PrismaModule
   ],
 })
