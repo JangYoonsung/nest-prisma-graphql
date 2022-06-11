@@ -20,12 +20,17 @@ type Major {
 type Query {
   getMajors(currentPage: Int): [Major!]!
   getMajor(id: Int!): Major!
+  getSubjects(currentPage: Int): [Subject!]!
+  getSubject(id: Int!): Subject!
 }
 
 type Mutation {
   createMajor(dto: CreateMajorDto!): Major!
   updateMajor(id: Int!, dto: UpdateMajorDto!): Major!
   deleteMajor(id: Int!): Major!
+  createSubject(dto: CreateSubjectDto!): Subject!
+  updateSubject(id: Int!, dto: UpdateSubjectDto!): Subject!
+  deleteSubject(id: Int!): Subject!
 }
 
 input CreateMajorDto {
@@ -34,4 +39,20 @@ input CreateMajorDto {
 
 input UpdateMajorDto {
   name: String
+}
+
+input CreateSubjectDto {
+  name: String!
+  code: String!
+  credit: Int!
+  type: String!
+  majorId: Int!
+}
+
+input UpdateSubjectDto {
+  name: String!
+  code: String!
+  credit: Int!
+  type: String!
+  majorId: Int!
 }
