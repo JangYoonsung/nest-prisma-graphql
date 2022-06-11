@@ -1,7 +1,7 @@
-import { IsOptional, IsString } from 'class-validator'
+import { Field, InputType } from '@nestjs/graphql'
 
+@InputType()
 export class UpdateMajorDto {
-  @IsOptional()
-  @IsString()
+  @Field(() => String, { nullable: true })
   name?: string
 }
