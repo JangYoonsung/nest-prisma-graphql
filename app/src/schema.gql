@@ -11,3 +11,11 @@ type Query {
   getMajors: [Major!]!
   getMajor(id: Int!): Major!
 }
+
+type Mutation {
+  createMajor(dto: CreateMajorDto!): Major!
+}
+
+input CreateMajorDto {
+  name: String!
+}

@@ -1,5 +1,6 @@
-import { Args, Int, Query, Resolver } from '@nestjs/graphql'
+import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql'
 import { PrismaService } from 'src/config/prisma.service'
+import { CreateMajorDto } from './dto/create-major.dto'
 import { Major } from './model/major.model'
 
 @Resolver(() => Major)
@@ -14,5 +15,12 @@ export class MajorResolver {
   @Query(() => Major)
   async getMajor(@Args('id', { type: () => Int }) id: number): Promise<Major> {
     return this.prisma.major.findUnique({ where: { id } })
+  }
+
+  @Mutation(() => Major)
+  async createMajor(
+    @Args('dto', { type: () => CreateMajorDto }) dto: CreateMajorDto
+  ): Promise<Major> {
+    return this.prisma.major.create({ data: dto })
   }
 }
