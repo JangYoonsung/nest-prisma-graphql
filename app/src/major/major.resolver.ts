@@ -28,7 +28,7 @@ export class MajorResolver {
   @Mutation(() => Major)
   async updateMajor(
     @Args('id', { type: () => Int }) id: number,
-    @Args('dto', { type:() => UpdateMajorDto }) dto: UpdateMajorDto
+    @Args('dto', { type: () => UpdateMajorDto }) dto: UpdateMajorDto
   ): Promise<Major> {
     return this.prisma.major.update({
       where: { id },
