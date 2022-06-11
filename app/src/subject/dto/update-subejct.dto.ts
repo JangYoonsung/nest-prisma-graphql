@@ -16,7 +16,7 @@ export class UpdateSubjectDto {
   @IsOptional()
   credit?: number
 
-  @Field(() => SubjectType, { nullable: false })
+  @Field(() => String, { nullable: false })
   @IsOptional()
   type?: typeof SubjectType[keyof typeof SubjectType]
 

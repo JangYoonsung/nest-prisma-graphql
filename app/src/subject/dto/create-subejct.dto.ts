@@ -16,7 +16,7 @@ export class CreateSubjectDto {
   @IsNotEmpty()
   credit: number
 
-  @Field(() => SubjectType, { nullable: false })
+  @Field(() => String, { nullable: false })
   @IsNotEmpty()
   type: typeof SubjectType[keyof typeof SubjectType]
 

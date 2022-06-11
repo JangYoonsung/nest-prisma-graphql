@@ -16,7 +16,7 @@ export class Subject {
   @Field(() => Int, { nullable: false })
   credit: number
 
-  @Field(() => SubjectType, { nullable: false })
+  @Field(() => String, { nullable: false })
   type: typeof SubjectType[keyof typeof SubjectType]
 
   @Field(() => Major, { nullable: false })

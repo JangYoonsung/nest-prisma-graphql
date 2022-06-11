@@ -2,9 +2,19 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Subject {
+  id: ID!
+  name: String!
+  code: String!
+  credit: Int!
+  type: String!
+  major: Major!
+}
+
 type Major {
   id: ID!
   name: String!
+  subject: [Subject!]
 }
 
 type Query {
