@@ -1,6 +1,6 @@
-import { Field, InputType, Int } from "@nestjs/graphql";
-import { SubjectType } from "@prisma/client";
-import { IsNotEmpty } from "class-validator";
+import { Field, InputType, Int } from '@nestjs/graphql'
+import { SubjectType } from '@prisma/client'
+import { IsNotEmpty } from 'class-validator'
 
 @InputType()
 export class CreateSubjectDto {
