@@ -15,6 +15,6 @@ import { MajorModule } from './major/major.module'
     }),
     MajorModule,
     PrismaModule
-  ],
+  ]
 })
 export class AppModule {}
