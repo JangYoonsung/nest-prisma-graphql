@@ -14,8 +14,13 @@ type Query {
 
 type Mutation {
   createMajor(dto: CreateMajorDto!): Major!
+  updateMajor(id: Int!, dto: UpdateMajorDto!): Major!
 }
 
 input CreateMajorDto {
   name: String!
+}
+
+input UpdateMajorDto {
+  name: String
 }
