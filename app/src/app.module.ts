@@ -4,6 +4,7 @@ import { GraphQLModule } from '@nestjs/graphql'
 import { join } from 'path'
 import { PrismaModule } from './config/prisma.module'
 import { MajorModule } from './major/major.module'
+import { SubjectModule } from './subject/subject.module'
 
 @Module({
   imports: [
@@ -14,7 +15,8 @@ import { MajorModule } from './major/major.module'
       autoSchemaFile: join(process.cwd(), 'src/schema.gql')
     }),
     MajorModule,
-    PrismaModule
+    PrismaModule,
+    SubjectModule
   ]
 })
 export class AppModule {}
