@@ -1,8 +1,8 @@
-import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
-import { CreateSubjectDto } from './dto/create-subejct.dto';
-import { UpdateSubjectDto } from './dto/update-subejct.dto';
-import { Subject } from './model/subject.model';
-import { SubjectService } from './subject.service';
+import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql'
+import { CreateSubjectDto } from './dto/create-subejct.dto'
+import { UpdateSubjectDto } from './dto/update-subejct.dto'
+import { Subject } from './model/subject.model'
+import { SubjectService } from './subject.service'
 
 @Resolver()
 export class SubjectResolver {
