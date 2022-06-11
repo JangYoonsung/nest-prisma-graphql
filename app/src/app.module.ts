@@ -1,7 +1,7 @@
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
 import { Module } from '@nestjs/common'
 import { GraphQLModule } from '@nestjs/graphql'
-import path from 'path'
+import { join } from 'path'
 import { PrismaModule } from './config/prisma.module'
 import { MajorModule } from './major/major.module'
 
@@ -11,7 +11,7 @@ import { MajorModule } from './major/major.module'
       driver: ApolloDriver,
       playground: true,
       debug: true,
-      autoSchemaFile: path?.join(process.cwd(), 'src/schema.gql')
+      autoSchemaFile: join(process.cwd(), 'src/schema.gql')
     }),
     MajorModule,
     PrismaModule
